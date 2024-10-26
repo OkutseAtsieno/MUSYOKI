@@ -81,16 +81,47 @@ def advocate_view(request):
         pass1 = request.POST.get('pass1')
         pass2 = request.POST.get('pass2')
 
+        if User.objects.filter(username=username).exists():
+            messages.error(request,'username already exists please choose a different username')
+            return redirect('Advocate_Signup')
+        
+        if User.objects.filter(email=email).exists():
+            messages.error(request,'email already exists please choose a different email')
+            return redirect('Advocate_Signup')
+        
+        if pass1 !=pass2:
+            messages.error(request,'passwords do not match ')
+            return redirect('Advocate_Signup')
+        
+
+
         myuser = User.objects.create_user(username, email, pass1)
         myuser.first_name = Fname
         myuser.last_name = Lname
         myuser.save
 
         messages.success(request, "account created succesfully")
-        return redirect('login')
+        return redirect('Advocate_login')
+    
+def advocate_signin(request):
+    if request.method=='POST':
+        username=request.POST.get('username')
+        pass1=request.POST.get('pass1')
+
+        user=authenticate(username=username,password=pass1)
+        if user is not None:
+            login(request,user)
+            return redirect('index')
+        else:
+            messages.error(request,'Invalid login')
+            return redirect('Advocate_login')
+    return render(request,'advocatelogin.html')
 
 def advocate_login(request):
     return render(request,'advocatelogin.html')
+
+def dashboard(request):
+    return render(request,'dashboard.html')
 
 
 

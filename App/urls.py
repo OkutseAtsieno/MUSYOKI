@@ -44,7 +44,9 @@ urlpatterns = [
     path('login/',views.login,name='login'),
 
     path('Advocate_Signup',views.Advocate_Signup,name='Advocate_Signup'),
-    path('Advocate_login',views.advocate_login,name='advocate_login')
+    path('Advocate_login',views.advocate_login,name='Advocate_login'),
+    path('advocate_signin',views.advocate_signin,name='advocate_signin'),
+    path('dashboard',views.dashboard,name='dashboard')
 
 
     
