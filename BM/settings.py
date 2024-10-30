@@ -32,6 +32,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'crispy_forms',     #make forms prettier
     'Advocate',
     'App',
     'django.contrib.admin',
@@ -41,6 +42,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 ]
+CRISPY_TEMPLATE_PAK='bootstrap 5'
 
 MESSAGE_TAGS = {
     messages.DEBUG: 'debug',
@@ -85,8 +87,11 @@ WSGI_APPLICATION = 'BM.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'Clientsection',
+        'USER':'postgres',
+        'PASSWORD':'postgres',
+        'HOST':'localhost'
     }
 }
 
