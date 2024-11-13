@@ -19,7 +19,7 @@ def client_form(request):  # deal with insert and update operations
         form = clientform(request.POST)
         if form.is_valid():
             form.save()
-            return redirect('/client_list')
+            return redirect('client_list')
         else:
             
             return render(request, 'clientform.html', {'form': form})
